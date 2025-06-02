@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+
+
+{% block content %}
+
+{% for post in blog %}
+<div class="card mb-3" style="max-width: 100%;">
+    <div class="row g-0">
+        {% if post.image %}
+        <div class="col-md-4">
+            <img src="{{ post.image.url }}" class="img-fluid rounded-start" alt="{{ post.title }} logos">
+        </div>
+        {% endif %}
+        <div class="col-md-8">
+            <div class="card-body">
+                <a href="{% url 'detailView' post.pk %}" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                <h5 class="card-title">{{ post.title }}</h5>
+                </a>
+                <p class="card-text">{{ post.text }}</p>
+                <p class="card-text"><small class="text-body-secondary">{{ post.time|date:"Y-m-d H:i" }}</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock content %}
